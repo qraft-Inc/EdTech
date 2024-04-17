@@ -22,6 +22,16 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "i18nConfig.js",
+    "src/middleware/middleware.js",
+    "src/app/i18n.js",
+    "src/common/views/widgets/language-switcher.widget.js",
+    "src/providers/translation.provider.js"
+  ],
   "exclude": ["node_modules"]
 }
