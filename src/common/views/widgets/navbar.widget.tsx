@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import Logo from "@/common/views/widgets/logo.widget";
 import NavbarLinks from "@/common/views/widgets/navbar-links.widget";
 import Cart from "@/common/views/widgets/cart.widget";
@@ -9,11 +8,9 @@ import Avatar from "@/common/views/widgets/avatar.widget";
 import ProfileDropdown from "@/common/views/widgets/profile-dropdown.widget";
 
 const Navbar = () => {
-  const { t } = useTranslation();
-
   return (
     // <!-- Main navigation container -->
-    <nav className="flex-no-wrap relative flex w-full items-center justify-between bg-zinc-50 py-2 shadow-dark-mild dark:bg-neutral-700 lg:flex-wrap lg:justify-start lg:py-4">
+    <nav className="flex-no-wrap relative flex w-full items-center justify-between bg-white shadow-lg lg:flex-wrap lg:justify-start lg:py-4 border-b-1  border-gray-300">
       <div className="flex w-full flex-wrap items-center justify-between px-3">
         {/* <!-- Hamburger button for mobile view --> */}
         <Hamburger />

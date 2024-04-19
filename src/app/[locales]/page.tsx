@@ -4,6 +4,7 @@ import { useCurrentLocale } from "next-i18n-router/client";
 import i18nConfig from "../../../i18nConfig";
 import TranslationProvider from "@/providers/translation-provider";
 import MainLayout from "@/layouts/main-layout";
+import Courses from "@/modules/courses/views/pages/courses.page";
 import initTranslations from "@/app/i18n";
 
 const i18Namespaces = ["common", "homepage"];
@@ -18,7 +19,7 @@ export default async function Home() {
       namespaces={i18Namespaces}
     >
       <NextUIProvider>
-        <MainLayout />
+        <MainLayout child={<Courses />} />
       </NextUIProvider>
     </TranslationProvider>
   );

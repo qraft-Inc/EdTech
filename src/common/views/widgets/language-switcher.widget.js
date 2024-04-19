@@ -1,11 +1,11 @@
 "use client";
-
+import React from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import i18nConfig from "../../../../i18nConfig";
 
-export default function LanguageChanger() {
+const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
   const router = useRouter();
@@ -35,14 +35,19 @@ export default function LanguageChanger() {
 
     router.refresh();
   };
-
   return (
-    <select onChange={handleChange} value={currentLocale}>
+    <select
+      className=" h-10 outline-none bg-inherit border-2 text-neutral-300"
+      onChange={handleChange}
+      value={currentLocale}
+    >
       <option value="en">English</option>
-      <option value="it">Swahili</option>
+      <option value="sw">Swahili</option>
       <option value="fr">French</option>
-      <option value="it">German</option>
-      <option value="it">Chineese</option>
+      <option value="de">German</option>
+      <option value="zh">Chineese</option>
     </select>
   );
-}
+};
+
+export default LanguageSwitcher;
