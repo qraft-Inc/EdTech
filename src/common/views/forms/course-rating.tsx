@@ -5,7 +5,8 @@ const CourseRating = () => {
   return (
     <div>
       <Rating
-        name="simple-controlled"
+        name="size-small"
+        size="small"
         value={1}
         onChange={(event, newValue) => {
           console.log(newValue);

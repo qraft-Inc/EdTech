@@ -1,5 +1,5 @@
 import React from "react";
-import { LocaleModel } from "@/modules/courses/models/locales.model";
+import { LocaleModel } from "@/common/models/locales.model";
 import SearchCources from "@/modules/courses/views/widgets/search-courses.widget";
 import CategoryDropdown from "@/modules/courses/views/widgets/category-dropdown.widget";
 

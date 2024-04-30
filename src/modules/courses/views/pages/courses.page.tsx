@@ -9,8 +9,8 @@ const Courses = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <Carousel t={t} />
-      <SectionHeader />
-      <div className="w-[90%] grid grid-cols-12 gap-4 m-4">
+      <SectionHeader header="All Courses" />
+      <div className="grid grid-cols-12 gap-4 m-4">
         <CourseCard />
         <CourseCard />
         <CourseCard />

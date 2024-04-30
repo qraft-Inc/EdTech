@@ -1,9 +1,10 @@
+import { SectionHeaderProps } from "@/common/models/section-header-model";
 import React from "react";
 
-const SectionHeader = () => {
+const SectionHeader = (props: SectionHeaderProps) => {
   return (
-    <div className="w-[90%] flex items-start justify-start mt-4 mb-4">
-      <h2 className=" text-2xl font-semibold text-blue-950">All Courses</h2>
+    <div className="grid  m-4">
+      <h2 className=" text-2xl font-semibold text-blue-950">{props.header}</h2>
     </div>
   );
 };

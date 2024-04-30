@@ -1,5 +1,5 @@
 import React from "react";
-import { LocaleModel } from "@/modules/courses/models/locales.model";
+import { LocaleModel } from "@/common/models/locales.model";
 
 const AboutUs = (props: LocaleModel) => {
   return (

@@ -12,7 +12,7 @@ const Footer = () => {
   const { t } = useTranslation();
   return (
     // <!-- Footer container -->
-    <footer className=" bg-neutral-800 text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left">
+    <footer className="bg-neutral-800 text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left">
       <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-white/10 lg:justify-between">
         <div className="me-12 hidden lg:block">
           <span className=" text-neutral-300">{t("contact_us")}</span>
