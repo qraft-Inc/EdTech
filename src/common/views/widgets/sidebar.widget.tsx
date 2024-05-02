@@ -13,29 +13,32 @@ const SideBar = () => {
   return (
     <div className="h-screen w-[10%] lg:w-[25%] md:w-[25%] bg-blue-100 lg:p-2 mb:p-2 p-1 relative left-0 top-0 bottom-0">
       <SidebarLink
+        href="/trainer-dashboard"
         link={t("trainer:dashboard")}
         icon={
           <Dashboard className="text-2xl md:text-3xl lg:text-3xl text-blue-950 md:mr-2 lg:mr-2" />
         }
       />
       <SidebarLink
+        href="/trainer-courses"
         link={t("trainer:courses")}
         icon={
           <LibraryBooks className="text-2xl md:text-3xl lg:text-3xl text-blue-950 md:mr-2 lg:mr-2" />
         }
       />
       <SidebarLink
+        href="/trainer-content"
         link={t("trainer:content_library")}
         icon={
           <PhotoAlbum className="text-2xl md:text-3xl lg:text-3xl text-blue-950 md:mr-2 lg:mr-2" />
         }
       />
-      <SidebarLink
+      {/* <SidebarLink
         link={t("trainer:revenue")}
         icon={
           <Money className="text-2xl md:text-3xl lg:text-3xl text-blue-950 md:mr-2 lg:mr-2" />
         }
-      />
+      /> */}
     </div>
   );
 };

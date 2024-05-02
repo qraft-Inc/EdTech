@@ -3,13 +3,11 @@ import { NextUIProvider } from "@nextui-org/react";
 import { useCurrentLocale } from "next-i18n-router/client";
 import i18nConfig from "../../../../i18nConfig";
 import TranslationProvider from "@/providers/translation-provider";
-import AdminLayout from "@/layouts/admin-layout";
-import TrainerDashboard from "@/modules/trainer/views/pages/trainer-dashboard.page";
-import TrainerCourses from "@/modules/trainer/views/pages/trainer-courses.page";
-import ContentLibrary from "@/modules/trainer/views/pages/content-library.page";
+import MainLayout from "@/layouts/main-layout";
+import CourseDetails from "@/modules/courses/views/pages/course-details.page";
 import initTranslations from "@/app/i18n";
 
-const i18Namespaces = ["common", "trainer"];
+const i18Namespaces = ["common", "homepage"];
 
 export default async function Home() {
   const locale = useCurrentLocale(i18nConfig);
@@ -21,7 +19,7 @@ export default async function Home() {
       namespaces={i18Namespaces}
     >
       <NextUIProvider>
-        <AdminLayout child={<TrainerDashboard />} />
+        <MainLayout child={<CourseDetails />} />
       </NextUIProvider>
     </TranslationProvider>
   );

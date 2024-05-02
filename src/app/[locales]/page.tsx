@@ -5,10 +5,6 @@ import i18nConfig from "../../../i18nConfig";
 import TranslationProvider from "@/providers/translation-provider";
 import MainLayout from "@/layouts/main-layout";
 import Courses from "@/modules/courses/views/pages/courses.page";
-import CourseDetails from "@/modules/courses/views/pages/course-details.page";
-import StudyCourse from "@/modules/courses/views/pages/study-course.page";
-import StudentCourses from "@/modules/courses/views/pages/student-courses.page";
-import CoursesSearchResults from "@/modules/courses/views/pages/courses-search-results.page";
 import initTranslations from "@/app/i18n";
 
 const i18Namespaces = ["common", "homepage"];
@@ -23,7 +19,7 @@ export default async function Home() {
       namespaces={i18Namespaces}
     >
       <NextUIProvider>
-        <MainLayout child={<CoursesSearchResults />} />
+        <MainLayout child={<Courses />} />
       </NextUIProvider>
     </TranslationProvider>
   );

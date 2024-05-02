@@ -10,14 +10,14 @@ import ProfileDropdown from "@/common/views/widgets/profile-dropdown.widget";
 const Navbar = () => {
   return (
     // <!-- Main navigation container -->
-    <nav className="flex-no-wrap relative flex w-full items-center justify-between bg-white shadow-lg lg:flex-wrap lg:justify-start lg:py-4 border-b-1  border-gray-300">
+    <nav className="flex-no-wrap sticky top-0 z-50 flex w-full items-center justify-between bg-white shadow-lg lg:flex-wrap lg:justify-start lg:py-4 border-b-1  border-gray-300">
       <div className="flex w-full flex-wrap items-center justify-between px-3">
         {/* <!-- Hamburger button for mobile view --> */}
         <Hamburger />
         <Logo />
-        <NavbarLinks />
         {/* <!-- Right elements --> */}
         <div className="relative flex items-center">
+          <NavbarLinks />
           <Cart />
           <div
             className="relative"

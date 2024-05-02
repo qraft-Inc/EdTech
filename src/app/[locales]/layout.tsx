@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Cabin_Condensed } from "next/font/google";
 
 const cabinCondensed = Cabin_Condensed({
@@ -20,10 +21,12 @@ export default function RootLayout({
   params: { locale: string };
 }) {
   return (
-    <html lang={locale}>
-      <body className={cabinCondensed.className}>
-        <div>{children}</div>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang={locale}>
+        <body className={cabinCondensed.className}>
+          <div>{children}</div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
