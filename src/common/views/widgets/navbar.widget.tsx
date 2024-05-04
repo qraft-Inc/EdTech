@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Logo from "@/common/views/widgets/logo.widget";
 import NavbarLinks from "@/common/views/widgets/navbar-links.widget";
 import Cart from "@/common/views/widgets/cart.widget";

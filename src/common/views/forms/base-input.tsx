@@ -6,8 +6,11 @@ const BaseInput = (props: BaseInputTypes) => {
     <div>
       <input
         type="text"
-        className=" w-96 border-1 border-gray-200 rounded-sm h-10 outline-none pl-1 my-4"
-        onChange={props.onChange}
+        className=" w-80 md:80 lg:w-96 border-1 border-gray-200 rounded-sm h-10 outline-none pl-1 my-4"
+        value={props.value}
+        onChange={(e) => {
+          props.onChange(e.target.value);
+        }}
         placeholder={props.placeholder}
         disabled={props.disabled}
       />

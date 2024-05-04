@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -23,9 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -38,10 +33,7 @@
     "src/app/i18n.js",
     "src/common/views/widgets/language-switcher.widget.ts",
     "src/providers/translation.provider.js"
-  ]
+  ],
   // "exclude": ["node_modules"]
-  ,
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { SignInButton, SignedOut, useAuth } from "@clerk/nextjs";
+import { SignInButton, SignedOut } from "@clerk/nextjs";
 
 const NavbarButtons = () => {
   return (
