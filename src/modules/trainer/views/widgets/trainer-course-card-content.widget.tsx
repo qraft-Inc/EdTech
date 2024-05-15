@@ -1,9 +1,10 @@
 import React from "react";
+import { CourseModel } from "@/modules/courses/models/course.model";
 
-const TrainerCourseCardContent = () => {
+const TrainerCourseCardContent = ({ title }: CourseModel) => {
   return (
     <div className="w-full">
-      <div className="mt-2 text-sm font-thin">Next JS Complete guide</div>
+      <div className="mt-2 text-sm font-thin">{title}</div>
       <div className="flex items-center justify-between mt-2">
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center p-2 rounded-2xl bg-blue-200 mr-2">

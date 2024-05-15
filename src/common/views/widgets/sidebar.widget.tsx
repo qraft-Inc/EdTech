@@ -11,7 +11,7 @@ import SidebarLink from "@/common/views/widgets/sidebar-link.widget";
 const SideBar = () => {
   const { t } = useTranslation();
   return (
-    <div className="h-screen w-[10%] lg:w-[25%] md:w-[25%] bg-blue-100 lg:p-2 mb:p-2 p-1 relative left-0 top-0 bottom-0">
+    <div className="h-screen w-[10%] lg:w-[25%] md:w-[25%] bg-white shadow-sm shadow-neutral-200 lg:p-2 mb:p-2 p-1 relative left-0 top-0 bottom-0">
       <SidebarLink
         href="/trainer-dashboard"
         link={t("trainer:dashboard")}

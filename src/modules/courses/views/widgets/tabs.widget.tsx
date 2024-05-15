@@ -1,5 +1,5 @@
+"use client";
 import React from "react";
-import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import TabPanel from "@mui/lab/TabPanel";
 import TabList from "@mui/lab/TabList";

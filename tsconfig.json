@@ -32,7 +32,9 @@
     "src/middleware/middleware.js",
     "src/app/i18n.js",
     "src/common/views/widgets/language-switcher.widget.ts",
-    "src/providers/translation.provider.js"
+    "src/providers/translation.provider.js",
+    "src/modules/trainer/views/widgets/rich-text-editor.widget.tsx",
+    "src/common/models/upload"
   ],
   // "exclude": ["node_modules"]
   "exclude": ["node_modules"]
