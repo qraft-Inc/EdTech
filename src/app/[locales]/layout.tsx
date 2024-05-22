@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Cabin_Condensed } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const cabinCondensed = Cabin_Condensed({
   weight: ["400", "500", "600", "700"],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <html lang={locale}>
         <body className={cabinCondensed.className}>
           <div>{children}</div>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

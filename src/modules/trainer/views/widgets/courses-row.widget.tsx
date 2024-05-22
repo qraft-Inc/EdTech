@@ -16,7 +16,7 @@ const CourseRow = () => {
         <TrainerCourseCard
           key={c.id}
           title={c.title}
-          url={c.url}
+          imageUrl={c.imageUrl}
           onClick={() => router.push(`/upload-course/${c.id}`)}
         />
       ))}

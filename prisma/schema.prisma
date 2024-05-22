@@ -16,7 +16,7 @@ datasource db {
 
 model Trainer {
   id String @id @default(uuid())
-  userId String @db.VarChar(255)
+  userId String @db.VarChar(255) @unique
   fullName String @db.VarChar(255)
   email String @unique @db.VarChar(255)
   password String  @db.VarChar(255) 
@@ -28,6 +28,7 @@ model Course {
   id String @id @default(uuid())
   userId String
   title String @db.Text
+  author String? @db.Text
   description String? @db.Text
   imageUrl String? @db.Text
   price Float?
@@ -112,3 +113,4 @@ model Purchase {
   @@unique([userId, courseId])
   @@index([courseId])
 }
+

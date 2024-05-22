@@ -1,5 +1,6 @@
 import cloudinary from "@/config/cloudinary";
 import { NextResponse } from "next/server";
+import { handlePrismaError } from "@/helpers";
 
 export async function POST(req: Request) {
   try {
@@ -11,6 +12,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ signature });
   } catch (error) {
     console.log("[COURSES]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    return handlePrismaError(error);
   }
 }

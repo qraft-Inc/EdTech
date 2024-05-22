@@ -25,7 +25,7 @@ const Navbar = () => {
             data-twe-dropdown-ref
             data-twe-dropdown-alignment="end"
           >
-            <Notification />
+            {/* <Notification /> */}
           </div>
           <div
             className="relative"

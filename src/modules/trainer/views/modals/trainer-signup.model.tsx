@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Modal from "@mui/material/Modal";
 import { TrainerSignupModel } from "@/modules/trainer/models/trainer-signup-modal.model";

@@ -8,7 +8,8 @@ export class SharedStore extends BaseStore {
     trainers: [],
     courses: [],
     trainer: { id: "", fullName: "", email: "", userId: "" },
-    course: { id: "", title: "", url: "" },
+    course: { id: "", title: "", imageUrl: "" },
+    categories: [],
   };
 
   constructor() {

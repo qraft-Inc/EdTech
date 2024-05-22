@@ -16,7 +16,7 @@ const BaseSelectInput = ({ onChange, value, options }: BaseSelectTypes) => {
         <Button
           endContent={<ArrowDropDown className=" text-5xl" />}
           variant="bordered"
-          className=" w-80 md:80 lg:w-96 border-1 border-gray-200 rounded-sm h-11 outline-none px-3 my-4 flex justify-between items-center"
+          className=" w-[100%] md:w-[100%] lg:w-[100%] border-1 border-gray-200 rounded-sm h-11 outline-none px-3 my-4 flex justify-between items-center"
         >
           {value}
         </Button>

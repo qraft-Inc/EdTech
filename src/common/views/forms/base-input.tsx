@@ -11,7 +11,7 @@ const BaseInput = ({
     <div>
       <input
         type="text"
-        className=" w-80 md:80 lg:w-96 border-1 border-gray-200 rounded-sm h-11 outline-none pl-3 my-4"
+        className=" w-[100%] md:w-[100%] lg:w-[100%] border-1 border-gray-200 rounded-sm h-11 outline-none pl-3 my-4"
         value={value}
         onChange={(e) => {
           onChange(e.target.value);

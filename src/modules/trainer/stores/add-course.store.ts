@@ -5,13 +5,6 @@ import {
   CloudinaryUploadWidgetError,
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
-import {
-  EditorState,
-  ContentState,
-  convertFromHTML,
-  convertToRaw,
-} from "draft-js";
-import draftToHtml from "draftjs-to-html";
 import { useApi } from "@/common/hooks/api/api";
 import { useStore } from "@/common/stores/base-store";
 import { SharedStore } from "@/common/stores/shared-store";
@@ -30,13 +23,19 @@ export class AddCourseStore extends BaseStore {
 
   @observable course: string = "";
 
+  @observable price: string = "";
+
   @observable chapter: string = "";
 
   @observable author: string = "";
 
-  @observable category: string = "category";
+  @observable category: string = "course category";
 
-  @observable descritpion: string = "";
+  @observable courseDescritpion: string = "";
+
+  @observable chapterDescritpion: string = "";
+
+  @observable attachDescritpion: string = "";
 
   @observable loading: boolean = false;
 
@@ -50,7 +49,20 @@ export class AddCourseStore extends BaseStore {
     if (data.selectedImage) this.selectedImage = data.selectedImage;
   };
 
-  @action onSelectSuccess = (
+  @action onSelectSuccessSwitch = (fileType: string) => {
+    switch (fileType) {
+      case "photo":
+        return this.onSelectCoverPhotoSuccess;
+      case "video":
+        return this.onSelectVideoSuccess;
+      case "document":
+        return this.onSelectAttachmentSuccess;
+      default:
+        break;
+    }
+  };
+
+  @action onSelectCoverPhotoSuccess = (
     result: CloudinaryUploadWidgetResults,
     widget: any
   ) => {
@@ -63,18 +75,61 @@ export class AddCourseStore extends BaseStore {
         "secure_url" in info.info
       ) {
         const secureUrl = info.info.secure_url;
+        this.coverPhotoUrl = secureUrl as unknown as string;
+        console.log("Upload success:", secureUrl);
+        // Your success handling logic here...
+      }
+    }
+    // widget.close();
+  };
+
+  @action onSelectVideoSuccess = (
+    result: CloudinaryUploadWidgetResults,
+    widget: any
+  ) => {
+    if (typeof result === "object" && result !== null) {
+      const info = result as unknown as CloudinaryUploadWidgetInfo;
+      if (
+        info &&
+        info.info &&
+        typeof info.info === "object" &&
+        "secure_url" in info.info
+      ) {
+        const secureUrl = info.info.secure_url;
+        this.videoUrl = secureUrl as unknown as string;
         // console.log("Upload success:", secureUrl);
         // Your success handling logic here...
       }
     }
-    widget.close();
+    // widget.close();
+  };
+
+  @action onSelectAttachmentSuccess = (
+    result: CloudinaryUploadWidgetResults,
+    widget: any
+  ) => {
+    if (typeof result === "object" && result !== null) {
+      const info = result as unknown as CloudinaryUploadWidgetInfo;
+      if (
+        info &&
+        info.info &&
+        typeof info.info === "object" &&
+        "secure_url" in info.info
+      ) {
+        const secureUrl = info.info.secure_url;
+        this.attachmentUrl = secureUrl as unknown as string;
+        // console.log("Upload success:", secureUrl);
+        // Your success handling logic here...
+      }
+    }
+    // widget.close();
   };
 
   @action onUploadFaliure = (error: CloudinaryUploadWidgetError) => {
     console.log(error);
   };
 
-  @action onUploadSwitch = (fileType: string) => {
+  @action onUploadAddedSwitch = (fileType: string) => {
     switch (fileType) {
       case "photo":
         return this.onUploadCoverPhoto;
@@ -160,23 +215,33 @@ export class AddCourseStore extends BaseStore {
     this.course = value;
   };
 
-  @action onChapterChanged = (value: string) => {
+  @action onPriceChanged = (value: string) => {
     console.log(value);
+    this.price = value;
+  };
+
+  @action onChapterChanged = (value: string) => {
     this.chapter = value;
   };
 
   @action onAuthorChanged = (value: string) => {
-    console.log(value);
     this.author = value;
   };
 
   @action onCategoryChanged = (key: any) => {
-    console.log(key);
     this.category = key;
   };
 
-  @action onDescriptionChanged = (value: string) => {
-    this.descritpion = value;
+  @action onCourseDescriptionChanged = (value: string) => {
+    this.courseDescritpion = value;
+  };
+
+  @action onChapterDescriptionChanged = (value: string) => {
+    this.chapterDescritpion = value;
+  };
+
+  @action onAttachmentDescriptionChanged = (value: string) => {
+    this.attachDescritpion = value;
   };
 
   @action onAddCourseSubmit = (
@@ -194,6 +259,8 @@ export class AddCourseStore extends BaseStore {
         endpoint: "/api/courses",
         data: {
           title: this.course,
+          author: this.author,
+          imageUrl: this.coverPhotoUrl,
           userId: userId,
         },
       })
@@ -204,7 +271,7 @@ export class AddCourseStore extends BaseStore {
         console.log(res);
       })
       .catch((e: Error) => {
-        console.log("LOGIN ERROR", e);
+        console.log("POST ERROR", e);
       })
       .finally(() => {
         this.loading = false;
@@ -227,7 +294,7 @@ export class AddCourseStore extends BaseStore {
         console.log(res);
       })
       .catch((e: Error) => {
-        console.log("LOGIN ERROR", e);
+        console.log("GET ERROR", e);
       })
       .finally(() => {
         this.loading = false;
@@ -235,8 +302,8 @@ export class AddCourseStore extends BaseStore {
   };
 
   @action onUpdateCourseSubmit = (
-    userId: any,
     isSignedIn: any,
+    courseId: string | string[],
     callback: (result: { success: boolean; res?: any; error?: string }) => void
   ) => {
     if (!isSignedIn) return console.log("Not logged in");
@@ -246,20 +313,25 @@ export class AddCourseStore extends BaseStore {
     this.loading = true;
     api
       .PATCH({
-        endpoint: "/api/courses",
+        endpoint: `/api/courses/${courseId}/`,
         data: {
           title: this.chapter,
-          userId: userId,
+          category: this.category,
+          price: parseFloat(this.price),
+          courseDescription: this.courseDescritpion,
+          chapterDescription: this.courseDescritpion,
+          videoUrl: this.videoUrl,
+          attachDescritpion: this.attachDescritpion,
+          attachmentUrl: this.attachmentUrl,
         },
       })
       .then((res): void => {
-        this.course = "";
         // sharedStore.store.trainer = res as TrainerModel;
         callback({ success: true });
         console.log(res);
       })
       .catch((e: Error) => {
-        console.log("LOGIN ERROR", e);
+        console.log("UPDATE ERROR", e);
       })
       .finally(() => {
         this.loading = false;

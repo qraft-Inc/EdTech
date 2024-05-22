@@ -8,7 +8,7 @@ const BaseButton = (props: BaseButtonTypes) => {
       onClick={props.onClick}
       disabled={props.disabled}
       type="button"
-      className="p-2 bg-orange-400 text-white hover:bg-orange-500 rounded-md"
+      className="p-2 bg-orange-400 text-white hover:bg-orange-500 rounded-md my-4"
     >
       {props.label}
     </Button>

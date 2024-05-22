@@ -6,15 +6,24 @@ import TabContext from "@mui/lab/TabContext";
 import CourseInformation from "@/modules/trainer/views/widgets/course-information.widget";
 import UploadCourseContent from "@/modules/trainer/views/widgets/upload-course-content.widget";
 import { VideoCameraFront, NoteAdd } from "@mui/icons-material";
+import BaseInput from "@/common/views/forms/base-input";
+import { useStore } from "@/common/stores/base-store";
+import { SharedStore } from "@/common/stores/shared-store";
+import { AddCourseStore } from "@/modules/trainer/stores/add-course.store";
+import { observer } from "mobx-react";
 
-const UploadCourseTab = () => {
+const UploadCourseTab = observer(() => {
   const [value, setValue] = React.useState<string>("1");
+
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  // const router = useRouter();
-  // console.log(router.query.data);
+  const {
+    onChapterDescriptionChanged,
+    onAttachmentDescriptionChanged,
+    loading,
+  } = useStore<AddCourseStore>(AddCourseStore);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -66,6 +75,11 @@ const UploadCourseTab = () => {
           <CourseInformation />
         </TabPanel>
         <TabPanel value="2" className=" w-full">
+          <BaseInput
+            placeholder="Chapter Description"
+            onChange={onChapterDescriptionChanged}
+            disabled={loading}
+          />
           <UploadCourseContent
             label="Upload Course Video"
             signatureEndpoint="/api/sign-upload"
@@ -74,6 +88,11 @@ const UploadCourseTab = () => {
           />
         </TabPanel>
         <TabPanel value="3" className=" w-full">
+          <BaseInput
+            placeholder="Attachment Description"
+            onChange={onAttachmentDescriptionChanged}
+            disabled={loading}
+          />
           <UploadCourseContent
             label="Upload Course Attachment"
             signatureEndpoint="/api/sign-upload"
@@ -84,6 +103,6 @@ const UploadCourseTab = () => {
       </TabContext>
     </div>
   );
-};
+});
 
 export default UploadCourseTab;

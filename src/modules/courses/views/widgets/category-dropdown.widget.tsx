@@ -1,28 +1,32 @@
+"use client";
 import React from "react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
+import { BaseSelectTypes } from "@/common/views/forms/types/base-select";
+import { ArrowDropDown } from "@mui/icons-material";
 
-const CategoryDropdown = () => {
+const CategoryDropdown = ({ onChange, value, options }: BaseSelectTypes) => {
   return (
-    <div className="flex justify-between items-center w-[25%] rounded-md box-border shadow-lg h-12 bg-orange-400 p-3">
-      <select className="block appearance-none w-[100%] bg-inherit text-white outline-none">
-        <option value="" disabled selected hidden>
-          Categories
-        </option>
-        <option>Marketing & Sales</option>
-        <option>Digital Marketing</option>
-        <option>Javascritp Begiiners Course</option>
-      </select>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="30"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#ffffff"
-        strokeWidth="2"
-      >
-        <path d="M6 9l6 6 6-6" />
-      </svg>
-    </div>
+    <Dropdown>
+      <DropdownTrigger>
+        <Button
+          endContent={<ArrowDropDown className=" text-5xl" />}
+          className=" w-[100%] md:w-[25%] lg:w-[25%]  bg-orange-400 rounded-md h-11 outline-none px-3 my-4 flex justify-between items-center"
+        >
+          {value}
+        </Button>
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Static Actions" onAction={onChange}>
+        {options.map((key: any) => (
+          <DropdownItem key={key}>{key}</DropdownItem>
+        ))}
+      </DropdownMenu>
+    </Dropdown>
   );
 };
 

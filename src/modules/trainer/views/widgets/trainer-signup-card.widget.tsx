@@ -31,9 +31,11 @@ const TrainerSignUpCard = observer((props: TrainerSignupProps) => {
           onClick={props.toggleModal}
         />
       </div>
-      <BaseInput placeholder="Full Name" onChange={onFullNameChanged} />
-      <BaseInput placeholder="Email" onChange={onEmailChanged} />
-      <BaseInput placeholder="Password" onChange={onPasswordChanged} />
+      <div className="w-full">
+        <BaseInput placeholder="Full Name" onChange={onFullNameChanged} />
+        <BaseInput placeholder="Email" onChange={onEmailChanged} />
+        <BaseInput placeholder="Password" onChange={onPasswordChanged} />
+      </div>
       <AddTrainerButton t={props.t} />
     </div>
   );

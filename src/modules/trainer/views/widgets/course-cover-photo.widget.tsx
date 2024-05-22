@@ -1,12 +1,7 @@
 import React from "react";
-import { Photo } from "@mui/icons-material";
 import { useStore } from "@/common/stores/base-store";
 import { SharedStore } from "@/common/stores/shared-store";
-import { AddCourseStore } from "@/modules/trainer/stores/add-course.store";
-import UploadCourseContent from "@/modules/trainer/views/widgets/upload-course-content.widget";
 import { motion } from "framer-motion";
-import { observer } from "mobx-react";
-import { useParams } from "next/navigation";
 import { BaseInputTypes } from "@/common/views/forms/types/base-input";
 
 type CoverPhotoProps = BaseInputTypes & { courseId: string | string[] };
@@ -31,7 +26,11 @@ const CourseCoverPhoto = ({
       dragConstraints={{ left: -100, right: 100 }}
       className={`flex flex-col justify-center items-center bg-neutral-50 w-full  bg-cover bg-no-repeat h-[300px]`}
       style={{
-        backgroundImage: "url(/cover.png)",
+        // backgroundImage: "url(/cover.png)",
+        // backgroundImage: `url(${uri})`,
+        backgroundImage: course?.imageUrl
+          ? `url(${course?.imageUrl})`
+          : "url(/cover.png)",
       }}
     >
       <h1 className="text-[#204484] text-5xl font-bold">{course?.title}</h1>
@@ -44,12 +43,6 @@ const CourseCoverPhoto = ({
         }}
         placeholder={placeholder}
         disabled={disabled}
-      />
-      <UploadCourseContent
-        label="Upload Cover Photo"
-        signatureEndpoint="/api/sign-upload"
-        fileType="photo"
-        icon={<Photo />}
       />
     </motion.div>
   );

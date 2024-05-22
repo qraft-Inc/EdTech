@@ -2,23 +2,29 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import AddCoursesButton from "@/modules/trainer/views/widgets/add-courses-button.widget";
 import CourseRow from "@/modules/trainer/views/widgets/courses-row.widget";
-import Modal from "@mui/material/Modal";
 import { observer } from "mobx-react";
 import { useStore } from "@/common/stores/base-store";
+import { Photo } from "@mui/icons-material";
 import { useAuth } from "@clerk/clerk-react";
 import { AddCourseStore } from "@/modules/trainer/stores/add-course.store";
-import { CancelOutlined } from "@mui/icons-material";
 import BaseInput from "@/common/views/forms/base-input";
-import Loader from "@/common/views/widgets/loader.widget";
 import BaseButton from "@/common/views/buttons/base-button";
+import BaseModel from "@/common/views/modals/base-modal";
+import UploadCourseContent from "@/modules/trainer/views/widgets/upload-course-content.widget";
 
 const TrainerCourses = observer(() => {
   const [open, setOpen] = React.useState<boolean>(false);
   const { isSignedIn, userId } = useAuth();
 
   const { t } = useTranslation();
-  const { onAddCourseSubmit, onCourseChanged, getCourses, loading } =
-    useStore<AddCourseStore>(AddCourseStore);
+  const {
+    coverPhotoUrl,
+    onAddCourseSubmit,
+    onCourseChanged,
+    getCourses,
+    onAuthorChanged,
+    loading,
+  } = useStore<AddCourseStore>(AddCourseStore);
 
   const addCourse = () => {
     onAddCourseSubmit(userId, isSignedIn, (res) => {
@@ -29,6 +35,7 @@ const TrainerCourses = observer(() => {
       }
     });
   };
+  console.log(coverPhotoUrl, "component");
 
   React.useEffect(() => {
     if (isSignedIn) {
@@ -42,27 +49,24 @@ const TrainerCourses = observer(() => {
     <div className="h-screen w-full overflow-auto">
       <AddCoursesButton t={t} onClick={handleModalToggle} />
       <CourseRow />
-      <Modal
-        open={open || false}
-        onClose={handleModalToggle}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        className="flex items-center justify-center"
+      <BaseModel
+        title="New Course"
+        open={open}
+        toggleModal={handleModalToggle}
+        loading={loading}
       >
-        <div className="w-[40%] flex flex-col items-center justify-center p-4 bg-white rounded-sm">
-          {loading ? <Loader /> : null}
-          <div className="flex items-center justify-between w-full">
-            <h3 className="text-2xl text-blue-950 font-light">New Course</h3>
-            <CancelOutlined
-              className="hover:cursor-pointer"
-              style={{ fontSize: 30 }}
-              onClick={handleModalToggle}
-            />
-          </div>
+        <div className="w-full">
           <BaseInput placeholder="Course Title" onChange={onCourseChanged} />
+          <BaseInput placeholder="Author" onChange={onAuthorChanged} />
+          <UploadCourseContent
+            label="Upload Cover Photo"
+            signatureEndpoint="/api/sign-upload"
+            fileType="photo"
+            icon={<Photo />}
+          />
           <BaseButton label="Add Course" onClick={addCourse} />
         </div>
-      </Modal>
+      </BaseModel>
     </div>
   );
 });

@@ -24,7 +24,7 @@ export const useApi = () => {
     }
   };
 
-  const POST = async <T>(options: PostOptions): Promise<object> => {
+  const POST = async (options: PostOptions): Promise<object> => {
     try {
       const res = await axios({
         method: "POST",

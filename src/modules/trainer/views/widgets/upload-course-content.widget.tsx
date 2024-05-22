@@ -8,23 +8,23 @@ import { UploadCourseContentModel } from "@/modules/trainer/models/upload-course
 
 const UploadCourseContent = observer(
   ({ signatureEndpoint, label, fileType, icon }: UploadCourseContentModel) => {
-    const { onSelectSuccess, onUploadFaliure, onUploadSwitch } =
+    const { onSelectSuccessSwitch, onUploadFaliure, onUploadAddedSwitch } =
       useStore<AddCourseStore>(AddCourseStore);
     return (
       <div className="flex items-center justify-center w-full">
         <CldUploadWidget
           signatureEndpoint={signatureEndpoint}
-          onSuccess={onSelectSuccess}
+          onSuccess={onSelectSuccessSwitch(fileType)}
           options={{ sources: ["local", "url"] }}
           onError={onUploadFaliure}
-          onUploadAdded={onUploadSwitch(fileType)}
+          onUploadAdded={onUploadAddedSwitch(fileType)}
         >
           {({ open }) => {
             return (
               <>
                 {fileType === "video" || fileType === "document" ? (
                   <div
-                    className="w-[90%] flex flex-col items-center justify-center p-32 border-2 border-dashed rounded-sm bg-neutral-100 cursor-pointer"
+                    className="w-[100%] flex flex-col items-center justify-center p-32 border-2 border-dashed rounded-sm bg-neutral-100 cursor-pointer"
                     onClick={() => open()}
                   >
                     <UploadButton

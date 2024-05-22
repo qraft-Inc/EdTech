@@ -1,50 +1,30 @@
 import { makeObservable, observable, action } from "mobx";
 import { BaseStore } from "@/common/stores/base-store";
+import { CategoryModel } from "@/modules/courses/models/category.model";
 import { useApi } from "@/common/hooks/api/api";
 import { useStore } from "@/common/stores/base-store";
 import { SharedStore } from "@/common/stores/shared-store";
-import { TrainerModel } from "@/modules/trainer/models/trainer.model";
 
-export class CreateTrainerStore extends BaseStore {
-  @observable
-  fullName: string = "";
+export class AddCategoryStore extends BaseStore {
+  @observable name: string = "";
 
-  @observable
-  email: string = "";
-
-  @observable
-  password: string = "";
-
-  @observable
-  loading: boolean = false;
+  @observable loading: boolean = false;
 
   constructor() {
     super();
     makeObservable(this);
   }
 
-  hydrate = (data?: { email?: string }) => {
+  hydrate = (data?: { name?: string }) => {
     if (!data) return;
-    if (data.email) this.email = data.email;
+    if (data.name) this.name = data.name;
   };
 
-  @action
-  onFullNameChanged = (value: string) => {
-    this.fullName = value;
+  @action onNameChanged = (value: string) => {
+    this.name = value;
   };
 
-  @action
-  onEmailChanged = (value: string) => {
-    this.email = value;
-  };
-
-  @action
-  onPasswordChanged = (value: string) => {
-    this.password = value;
-  };
-
-  @action onSubmit = (
-    userId: any,
+  @action onAddCategorySubmit = (
     isSignedIn: any,
     callback: (result: { success: boolean; res?: any; error?: string }) => void
   ) => {
@@ -55,19 +35,14 @@ export class CreateTrainerStore extends BaseStore {
     this.loading = true;
     api
       .POST({
-        endpoint: "/api/trainers",
+        endpoint: "/api/courses/categories",
         data: {
-          fullName: this.fullName,
-          email: this.email,
-          password: this.password,
-          userId: userId,
+          name: this.name,
         },
       })
       .then((res): void => {
-        this.fullName = "";
-        this.email = "";
-        this.password = "";
-        sharedStore.store.trainer = res as TrainerModel;
+        this.name = "";
+        // sharedStore.store.categories = res as unknown as CategoryModel[];
         callback({ success: true });
         console.log(res);
       })
@@ -79,17 +54,18 @@ export class CreateTrainerStore extends BaseStore {
       });
   };
 
-  @action getTrainer = (userId: any) => {
+  @action getCategories = () => {
     const api = useApi();
     const sharedStore = useStore<SharedStore>(SharedStore);
     this.loading = true;
+
     api
       .GET({
-        endpoint: `/api/trainers/?id=${userId}`,
+        endpoint: `/api/courses/categories`,
       })
       .then((res): void => {
-        sharedStore.store.trainer = res as unknown as TrainerModel;
-        console.log(res, "kkk");
+        sharedStore.store.categories = res as unknown as CategoryModel[];
+        // console.log(res, "kk");
       })
       .catch((e: Error) => {
         console.log("GET ERROR", e);
