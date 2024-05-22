@@ -9,8 +9,8 @@ const AuthenticationCard = (props: LocaleModel) => {
       <h2 className="text-2xl text-blue-950 font-semibold">
         {props.t("login")}
       </h2>
-      <BaseInput placeholder="Email" />
-      <BaseInput placeholder="Password" />
+      {/* <BaseInput placeholder="Email" /> */}
+      {/* <BaseInput placeholder="Password" /> */}
       <BaseButton label={props.t("login")} />
     </div>
   );

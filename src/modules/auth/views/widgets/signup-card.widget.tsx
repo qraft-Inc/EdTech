@@ -9,9 +9,9 @@ const SignUpCard = (props: LocaleModel) => {
       <h2 className="text-2xl text-blue-950 font-semibold">
         {props.t("sign_up")}
       </h2>
-      <BaseInput placeholder="Email" />
-      <BaseInput placeholder="Password" />
-      <BaseInput placeholder="Confirm Password" />
+      {/* <BaseInput placeholder="Email" /> */}
+      {/* <BaseInput placeholder="Password" /> */}
+      {/* <BaseInput placeholder="Confirm Password" /> */}
       <BaseButton label={props.t("sign_up")} />
     </div>
   );

@@ -11,9 +11,7 @@ const ReviewCard = () => {
       </div>
       <p className="text-xs text-blue-950 font-thin">
         It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout. The point of
-        using Lorem Ipsum is that it has a more-or-less normal distribution of
-        letters, as opposed to using 'Content here, content here',
+        readable content of a page when looking at its layout.
       </p>
       <div className="flex items-end">
         <CourseRating />

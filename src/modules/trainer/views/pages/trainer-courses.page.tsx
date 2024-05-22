@@ -41,7 +41,7 @@ const TrainerCourses = observer(() => {
     if (isSignedIn) {
       getCourses(userId, isSignedIn);
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, userId]);
 
   const handleModalToggle = () => setOpen(!open);
 
