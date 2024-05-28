@@ -4,22 +4,6 @@ import { db } from "@/lib/db";
 
 import { v4 as uuidv4 } from "uuid";
 
-// export async function GET(req: Request) {
-//   try {
-//     const url = new URL(req.url);
-//     const searchParams = new URLSearchParams(url.searchParams);
-//     const id = searchParams.get("id") as unknown as String;
-//     let courses;
-//     if (typeof id === "string") {
-//       courses = await db.course.findMany({ where: { userId: id } });
-//     }
-//     return NextResponse.json(courses);
-//   } catch (error) {
-//     console.log("[COURSES]", error);
-//     return handlePrismaError(error);
-//   }
-// }
-
 export async function GET(req: Request) {
   try {
     const courses = await db.course.findMany();

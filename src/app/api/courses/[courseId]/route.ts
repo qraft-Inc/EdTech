@@ -6,11 +6,12 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function GET(
   req: Request,
-  { params }: { params: { courseId: string } }
+  { params }: { params: { userId: string } }
 ) {
   try {
-    console.log(params);
-    const courses = await db.course.findMany();
+    const courses = await db.course.findMany({
+      where: { id: params.userId },
+    });
     return NextResponse.json(courses);
   } catch (error) {
     console.log("[COURSES]", error);
