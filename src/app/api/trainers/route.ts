@@ -4,16 +4,6 @@ import { db } from "@/lib/db";
 
 import { v4 as uuidv4 } from "uuid";
 
-// export async function GET(req: Request) {
-//   try {
-//     const trainers = await db.trainer.findMany();
-//     return NextResponse.json(trainers);
-//   } catch (error) {
-//     console.log("[TRAINERS]", error);
-//     return handlePrismaError(error);
-//   }
-// }
-
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
