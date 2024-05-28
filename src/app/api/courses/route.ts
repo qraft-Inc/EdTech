@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 
 import { v4 as uuidv4 } from "uuid";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const courses = await db.course.findMany();
 
