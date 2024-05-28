@@ -85,7 +85,7 @@ export class CreateTrainerStore extends BaseStore {
     this.loading = true;
     api
       .GET({
-        endpoint: `/api/trainers/?id=${userId}`,
+        endpoint: `/api/trainers/${userId}`,
       })
       .then((res): void => {
         sharedStore.store.trainer = res as unknown as TrainerModel;
